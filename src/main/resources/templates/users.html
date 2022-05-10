@@ -1,16 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>My first styled page</title>
-    <style type="text/css">
-        body {
-            color: #007c80;
-            background-color: #dacd3d
-        }
-    </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -21,8 +15,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
-    <title>Покупка билетов</title>
+    <title>Пользователь</title>
 </head>
 <body>
 <div class="container">
@@ -33,17 +26,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/users}">Пользователь</a>
+                <a class="nav-item nav-link active" th:href="@{/index}">Афиша</a>
                 <a class="nav-item nav-link active" th:href="@{/tickets}">Билеты</a>
-                    <a class="nav-item nav-link" th:if="${user.username == 'Гость'}" th:href="@{/loginPage}">
-                        <span th:text="${user.username}"></span>
-                        <span> | Войти</span>
-                    </a>
-                    <a class="nav-item nav-link" th:if="${user.username != 'Гость'}" th:href="@{/logout}">
-                        <span th:text="${user.username}"></span>
-                        <span> | Выйти</span>
-                    </a>
-                </div>
+            </div>
         </div>
     </nav>
     <div class="row">
@@ -51,25 +36,15 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Кино</th>
-                <th scope="col">Описание</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Email</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Круиз по джунглям</td>
-                <td>приключения, комедия, фэнтези</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Красное уведомление</td>
-                <td>боевик, комедия, преступление</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Главный герой</td>
-                <td>фантастика, боевик, комедия, мелодрама</td>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.id}" />
+                <td th:text="${user.username}" />
+                <td th:text="${user.email}" />
             </tr>
             </tbody>
         </table>
